@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace EntityWindowsTool
 {
+   
     public class BufferEntity
     {
         public void Initialize(int id) { }
@@ -67,290 +68,296 @@ namespace EntityWindowsTool
                 Console.WriteLine("Пустой текст нельзя скопировать.", "Ошибка");
             }
         }
+        /// <summary>
+        ///  //public partial class MainWindow : Window
+        //{
+        //    private readonly AppDbContext _context;
+        //    public MainWindow()
+        //    {
+        //        InitializeComponent();
+        //        _context = new AppDbContext();
+        //        AppDbContextStorage.Context = _context;
+        //        LoadData();
+        //    }
+
+        //    private void LoadData()
+        //    {
+        //        try
+        //        {
+        //            foreach (var partner in _context.Partners.ToList())
+        //            {
+        //                int partnerTypePartnerID = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID).PartnerTypeID;
+        //                string partnerTypeName = _context.PartnerTypes.FirstOrDefault(x => x.PartnerTypeID == partnerTypePartnerID).Name;
+
+        //                int directorId = _context.PartnerDirectors.FirstOrDefault(x => x.PartnerID == partner.PartnerID).DirectorID;
+        //                string directorName = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Name;
+        //                string directorPhone = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Phone;
+
+        //                var dockPanel = new DockPanel();
+
+        //                dockPanel.Tag = partner;
+        //                dockPanel.MouseLeftButtonDown += DockPanelClick;
+
+        //                var textblock1 = new TextBlock() { Text = $"10%" };
+
+        //                DockPanel.SetDock(textblock1, Dock.Right);
+        //                dockPanel.Children.Add(textblock1);
+
+        //                var stackPanel = new StackPanel();
+
+        //                DockPanel.SetDock(stackPanel, Dock.Left);
+        //                dockPanel.Children.Add(stackPanel);
+
+        //                var textblock2 = new TextBlock() { Text = $"{partnerTypeName} | {partner.Name}" };
+        //                var textblock3 = new TextBlock() { Text = $"{directorName}" };
+        //                var textblock4 = new TextBlock() { Text = $"+7 {directorPhone}" };
+        //                var textblock5 = new TextBlock() { Text = $"{partner.Rating}" };
+
+        //                stackPanel.Children.Add(textblock2);
+        //                stackPanel.Children.Add(textblock3);
+        //                stackPanel.Children.Add(textblock4);
+        //                stackPanel.Children.Add(textblock5);
+
+        //                MainPanel.Children.Add(dockPanel);
+        //            }
+
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"Внимание, ошибка загрузки данных. {ex.Message}");
+        //        }
+        //    }
+
+        //    private void DockPanelClick(object sender, MouseButtonEventArgs e)
+        //    {
+        //        try
+        //        {
+        //            var dockPanel = sender as DockPanel;
+        //            if (dockPanel != null)
+        //            {
+        //                var partner = dockPanel.Tag as Partner;
+
+        //                if (partner != null)
+        //                {
+        //                    PartnerStorage.Partner = partner;
+        //                    new AddOrUpdateWindow().Show();
+        //                    this.Close();
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"Внимание, ошибка загрузки формы. {ex.Message}");
+
+        //        }
+        //    }
+
+        //    private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        //    {
+        //        new AddOrUpdateWindow().Show();
+        //        PartnerStorage.Partner = null;
+        //        this.Close();
+        //    }
+        //}
+
+        //public partial class AddOrUpdateWindow : Window
+        //{
+        //    private readonly AppDbContext _context;
+        //    private readonly Partner _partner;
+        //    public AddOrUpdateWindow()
+        //    {
+        //        InitializeComponent();
+        //        _context = AppDbContextStorage.Context;
+        //        if (PartnerStorage.Partner != null)
+        //        {
+        //            _partner = PartnerStorage.Partner;
+        //            LoadData();
+        //        }
+        //        FillComboBox();
+        //    }
+
+        //    private void FillComboBox()
+        //    {
+        //        try
+        //        {
+        //            ComboBoxType.Items.Clear();
+        //            foreach (var item in _context.PartnerTypes.ToList())
+        //            {
+        //                ComboBoxType.Items.Add(item.Name);
+        //            }
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"Загрузка данных в выпадающий список прошла неудачно, проверьте подключение к БД. {ex.Message}");
+        //        }
+        //    }
+
+        //    private void LoadData()
+        //    {
+        //        try
+        //        {
+        //            var partner = _partner;
+        //            int partnerTypePartnerID = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID).PartnerTypeID;
+        //            string partnerTypeName = _context.PartnerTypes.FirstOrDefault(x => x.PartnerTypeID == partnerTypePartnerID).Name;
+
+        //            int directorId = _context.PartnerDirectors.FirstOrDefault(x => x.PartnerID == partner.PartnerID).DirectorID;
+        //            string directorName = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Name;
+        //            string directorPhone = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Phone;
+        //            string directorEmail = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Email;
+
+        //            InnTextBox.Text = partner.INN.ToString();
+        //            NameTextBox.Text = partner.Name;
+        //            RatingTextBox.Text = partner.Rating.ToString();
+        //            AddressTextBox.Text = partner.Address.ToString();
+
+        //            ComboBoxType.SelectedItem = partnerTypeName;
+
+        //            DirectorNameTextBox.Text = directorName;
+        //            PhoneTextBox.Text = directorPhone;
+        //            EmailTextBox.Text = directorEmail;
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"Загрузка данных прошла неудачно, проверьте подключение к БД. {ex.Message}");
+        //        }
+        //    }
+
+        //    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        //    {
+        //        if (
+        //            !string.IsNullOrEmpty(NameTextBox.Text)
+        //            ||
+        //            ComboBoxType.SelectedItem != null
+        //            ||
+        //            !string.IsNullOrEmpty(DirectorNameTextBox.Text)
+        //            ||
+        //            !string.IsNullOrEmpty(PhoneTextBox.Text)
+        //            ||
+        //            !string.IsNullOrEmpty(RatingTextBox.Text)
+        //            ||
+        //            !string.IsNullOrEmpty(AddressTextBox.Text)
+        //            ||
+        //            !string.IsNullOrEmpty(EmailTextBox.Text)
+        //            )
+        //        {
+        //            try
+        //            {
+        //                if (_partner != null)
+        //                {
+        //                    var partner = _partner;
+        //                    int partnerTypePartnerID = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID).PartnerTypeID;
+        //                    string partnerTypeName = _context.PartnerTypes.FirstOrDefault(x => x.PartnerTypeID == partnerTypePartnerID).Name;
+
+        //                    int directorId = _context.PartnerDirectors.FirstOrDefault(x => x.PartnerID == partner.PartnerID).DirectorID;
+        //                    string directorName = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Name;
+        //                    string directorPhone = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Phone;
+        //                    string directorEmail = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Email;
+
+        //                    partner.Name = NameTextBox.Text;
+        //                    partner.Rating = int.Parse(RatingTextBox.Text);
+        //                    partner.Address = AddressTextBox.Text;
+
+        //                    _context.Partners.AddOrUpdate(partner);
+        //                    _context.SaveChanges();
+
+
+        //                    string newTypeName = ComboBoxType.SelectedItem.ToString();
+        //                    var partnerTypePartnerOld = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID);
+        //                    var partnerType = _context.PartnerTypes.FirstOrDefault(x => x.Name == newTypeName);
+
+        //                    _context.PartnerTypePartners.Remove(partnerTypePartnerOld);
+        //                    _context.SaveChanges();
+        //                    var partnerTypePartnerNew = new PartnerTypePartner() { PartnerTypePartnersID = new Random().Next(100, 10000000), PartnerID = partner.PartnerID, PartnerTypeID = partnerType.PartnerTypeID };
+        //                    _context.PartnerTypePartners.Add(partnerTypePartnerNew);
+        //                    _context.SaveChanges();
+
+
+        //                    var director = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId);
+        //                    director.Name = DirectorNameTextBox.Text;
+        //                    director.Phone = PhoneTextBox.Text;
+        //                    director.Email = EmailTextBox.Text;
+        //                    _context.Directors.AddOrUpdate(director);
+        //                    _context.SaveChanges();
+
+        //                    MessageBox.Show("Успешное сохранение данных!");
+
+        //                    new MainWindow().Show();
+        //                    this.Close();
+        //                }
+        //                else
+        //                {
+        //                    var partner = new Partner()
+        //                    {
+        //                        PartnerID = new Random().Next(100, 10000000),
+        //                        Address = AddressTextBox.Text,
+        //                        Name = NameTextBox.Text,
+        //                        INN = Int32.Parse(InnTextBox.Text),
+        //                        Rating = int.Parse(RatingTextBox.Text)
+        //                    };
+
+        //                    _context.Partners.Add(partner);
+        //                    _context.SaveChanges();
+
+        //                    var director = new Director()
+        //                    {
+        //                        DirectorID = new Random().Next(100, 10000000),
+        //                        Name = DirectorNameTextBox.Text,
+        //                        Email = EmailTextBox.Text,
+        //                        Phone = PhoneTextBox.Text
+        //                    };
+        //                    _context.Directors.Add(director);
+        //                    _context.SaveChanges();
+
+        //                    var partnerTypePartner = new PartnerTypePartner()
+        //                    {
+        //                        PartnerTypePartnersID = new Random().Next(100, 10000000),
+        //                        PartnerTypeID = ComboBoxType.SelectedIndex + 1,
+        //                        PartnerID = partner.PartnerID
+
+        //                    };
+        //                    _context.PartnerTypePartners.Add(partnerTypePartner);
+        //                    _context.SaveChanges();
+
+        //                    var partnerDirector = new PartnerDirector()
+        //                    {
+        //                        PartnerDirectorID = new Random().Next(100, 10000000),
+        //                        DirectorID = director.DirectorID,
+        //                        PartnerID = partner.PartnerID
+
+        //                    };
+        //                    _context.PartnerDirectors.Add(partnerDirector);
+        //                    _context.SaveChanges();
+
+
+        //                    MessageBox.Show("Успешное сохранение данных!");
+
+        //                    new MainWindow().Show();
+        //                    this.Close();
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show($"Загрузка данных прошла неудачно, проверьте подключение к БД. {ex.Message}");
+        //            }
+        //        }
+
+        //    }
+
+        //    private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        //    {
+        //        new MainWindow().Show();
+        //        this.Close();
+        //    }
+        //}
+        /// </summary>
+
+
+
     }
 
-    //public partial class MainWindow : Window
-    //{
-    //    private readonly AppDbContext _context;
-    //    public MainWindow()
-    //    {
-    //        InitializeComponent();
-    //        _context = new AppDbContext();
-    //        AppDbContextStorage.Context = _context;
-    //        LoadData();
-    //    }
-
-    //    private void LoadData()
-    //    {
-    //        try
-    //        {
-    //            foreach (var partner in _context.Partners.ToList())
-    //            {
-    //                int partnerTypePartnerID = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID).PartnerTypeID;
-    //                string partnerTypeName = _context.PartnerTypes.FirstOrDefault(x => x.PartnerTypeID == partnerTypePartnerID).Name;
-
-    //                int directorId = _context.PartnerDirectors.FirstOrDefault(x => x.PartnerID == partner.PartnerID).DirectorID;
-    //                string directorName = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Name;
-    //                string directorPhone = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Phone;
-
-    //                var dockPanel = new DockPanel();
-
-    //                dockPanel.Tag = partner;
-    //                dockPanel.MouseLeftButtonDown += DockPanelClick;
-
-    //                var textblock1 = new TextBlock() { Text = $"10%" };
-
-    //                DockPanel.SetDock(textblock1, Dock.Right);
-    //                dockPanel.Children.Add(textblock1);
-
-    //                var stackPanel = new StackPanel();
-
-    //                DockPanel.SetDock(stackPanel, Dock.Left);
-    //                dockPanel.Children.Add(stackPanel);
-
-    //                var textblock2 = new TextBlock() { Text = $"{partnerTypeName} | {partner.Name}" };
-    //                var textblock3 = new TextBlock() { Text = $"{directorName}" };
-    //                var textblock4 = new TextBlock() { Text = $"+7 {directorPhone}" };
-    //                var textblock5 = new TextBlock() { Text = $"{partner.Rating}" };
-
-    //                stackPanel.Children.Add(textblock2);
-    //                stackPanel.Children.Add(textblock3);
-    //                stackPanel.Children.Add(textblock4);
-    //                stackPanel.Children.Add(textblock5);
-
-    //                MainPanel.Children.Add(dockPanel);
-    //            }
-
-
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show($"Внимание, ошибка загрузки данных. {ex.Message}");
-    //        }
-    //    }
-
-    //    private void DockPanelClick(object sender, MouseButtonEventArgs e)
-    //    {
-    //        try
-    //        {
-    //            var dockPanel = sender as DockPanel;
-    //            if (dockPanel != null)
-    //            {
-    //                var partner = dockPanel.Tag as Partner;
-
-    //                if (partner != null)
-    //                {
-    //                    PartnerStorage.Partner = partner;
-    //                    new AddOrUpdateWindow().Show();
-    //                    this.Close();
-    //                }
-    //            }
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show($"Внимание, ошибка загрузки формы. {ex.Message}");
-
-    //        }
-    //    }
-
-    //    private void BtnAdd_Click(object sender, RoutedEventArgs e)
-    //    {
-    //        new AddOrUpdateWindow().Show();
-    //        PartnerStorage.Partner = null;
-    //        this.Close();
-    //    }
-    //}
-
-    //public partial class AddOrUpdateWindow : Window
-    //{
-    //    private readonly AppDbContext _context;
-    //    private readonly Partner _partner;
-    //    public AddOrUpdateWindow()
-    //    {
-    //        InitializeComponent();
-    //        _context = AppDbContextStorage.Context;
-    //        if (PartnerStorage.Partner != null)
-    //        {
-    //            _partner = PartnerStorage.Partner;
-    //            LoadData();
-    //        }
-    //        FillComboBox();
-    //    }
-
-    //    private void FillComboBox()
-    //    {
-    //        try
-    //        {
-    //            ComboBoxType.Items.Clear();
-    //            foreach (var item in _context.PartnerTypes.ToList())
-    //            {
-    //                ComboBoxType.Items.Add(item.Name);
-    //            }
-
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show($"Загрузка данных в выпадающий список прошла неудачно, проверьте подключение к БД. {ex.Message}");
-    //        }
-    //    }
-
-    //    private void LoadData()
-    //    {
-    //        try
-    //        {
-    //            var partner = _partner;
-    //            int partnerTypePartnerID = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID).PartnerTypeID;
-    //            string partnerTypeName = _context.PartnerTypes.FirstOrDefault(x => x.PartnerTypeID == partnerTypePartnerID).Name;
-
-    //            int directorId = _context.PartnerDirectors.FirstOrDefault(x => x.PartnerID == partner.PartnerID).DirectorID;
-    //            string directorName = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Name;
-    //            string directorPhone = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Phone;
-    //            string directorEmail = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Email;
-
-    //            InnTextBox.Text = partner.INN.ToString();
-    //            NameTextBox.Text = partner.Name;
-    //            RatingTextBox.Text = partner.Rating.ToString();
-    //            AddressTextBox.Text = partner.Address.ToString();
-
-    //            ComboBoxType.SelectedItem = partnerTypeName;
-
-    //            DirectorNameTextBox.Text = directorName;
-    //            PhoneTextBox.Text = directorPhone;
-    //            EmailTextBox.Text = directorEmail;
-
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show($"Загрузка данных прошла неудачно, проверьте подключение к БД. {ex.Message}");
-    //        }
-    //    }
-
-    //    private void SaveBtn_Click(object sender, RoutedEventArgs e)
-    //    {
-    //        if (
-    //            !string.IsNullOrEmpty(NameTextBox.Text)
-    //            ||
-    //            ComboBoxType.SelectedItem != null
-    //            ||
-    //            !string.IsNullOrEmpty(DirectorNameTextBox.Text)
-    //            ||
-    //            !string.IsNullOrEmpty(PhoneTextBox.Text)
-    //            ||
-    //            !string.IsNullOrEmpty(RatingTextBox.Text)
-    //            ||
-    //            !string.IsNullOrEmpty(AddressTextBox.Text)
-    //            ||
-    //            !string.IsNullOrEmpty(EmailTextBox.Text)
-    //            )
-    //        {
-    //            try
-    //            {
-    //                if (_partner != null)
-    //                {
-    //                    var partner = _partner;
-    //                    int partnerTypePartnerID = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID).PartnerTypeID;
-    //                    string partnerTypeName = _context.PartnerTypes.FirstOrDefault(x => x.PartnerTypeID == partnerTypePartnerID).Name;
-
-    //                    int directorId = _context.PartnerDirectors.FirstOrDefault(x => x.PartnerID == partner.PartnerID).DirectorID;
-    //                    string directorName = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Name;
-    //                    string directorPhone = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Phone;
-    //                    string directorEmail = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId).Email;
-
-    //                    partner.Name = NameTextBox.Text;
-    //                    partner.Rating = int.Parse(RatingTextBox.Text);
-    //                    partner.Address = AddressTextBox.Text;
-
-    //                    _context.Partners.AddOrUpdate(partner);
-    //                    _context.SaveChanges();
-
-
-    //                    string newTypeName = ComboBoxType.SelectedItem.ToString();
-    //                    var partnerTypePartnerOld = _context.PartnerTypePartners.FirstOrDefault(x => x.PartnerID == partner.PartnerID);
-    //                    var partnerType = _context.PartnerTypes.FirstOrDefault(x => x.Name == newTypeName);
-
-    //                    _context.PartnerTypePartners.Remove(partnerTypePartnerOld);
-    //                    _context.SaveChanges();
-    //                    var partnerTypePartnerNew = new PartnerTypePartner() { PartnerTypePartnersID = new Random().Next(100, 10000000), PartnerID = partner.PartnerID, PartnerTypeID = partnerType.PartnerTypeID };
-    //                    _context.PartnerTypePartners.Add(partnerTypePartnerNew);
-    //                    _context.SaveChanges();
-
-
-    //                    var director = _context.Directors.FirstOrDefault(x => x.DirectorID == directorId);
-    //                    director.Name = DirectorNameTextBox.Text;
-    //                    director.Phone = PhoneTextBox.Text;
-    //                    director.Email = EmailTextBox.Text;
-    //                    _context.Directors.AddOrUpdate(director);
-    //                    _context.SaveChanges();
-
-    //                    MessageBox.Show("Успешное сохранение данных!");
-
-    //                    new MainWindow().Show();
-    //                    this.Close();
-    //                }
-    //                else
-    //                {
-    //                    var partner = new Partner()
-    //                    {
-    //                        PartnerID = new Random().Next(100, 10000000),
-    //                        Address = AddressTextBox.Text,
-    //                        Name = NameTextBox.Text,
-    //                        INN = Int32.Parse(InnTextBox.Text),
-    //                        Rating = int.Parse(RatingTextBox.Text)
-    //                    };
-
-    //                    _context.Partners.Add(partner);
-    //                    _context.SaveChanges();
-
-    //                    var director = new Director()
-    //                    {
-    //                        DirectorID = new Random().Next(100, 10000000),
-    //                        Name = DirectorNameTextBox.Text,
-    //                        Email = EmailTextBox.Text,
-    //                        Phone = PhoneTextBox.Text
-    //                    };
-    //                    _context.Directors.Add(director);
-    //                    _context.SaveChanges();
-
-    //                    var partnerTypePartner = new PartnerTypePartner()
-    //                    {
-    //                        PartnerTypePartnersID = new Random().Next(100, 10000000),
-    //                        PartnerTypeID = ComboBoxType.SelectedIndex + 1,
-    //                        PartnerID = partner.PartnerID
-
-    //                    };
-    //                    _context.PartnerTypePartners.Add(partnerTypePartner);
-    //                    _context.SaveChanges();
-
-    //                    var partnerDirector = new PartnerDirector()
-    //                    {
-    //                        PartnerDirectorID = new Random().Next(100, 10000000),
-    //                        DirectorID = director.DirectorID,
-    //                        PartnerID = partner.PartnerID
-
-    //                    };
-    //                    _context.PartnerDirectors.Add(partnerDirector);
-    //                    _context.SaveChanges();
-
-
-    //                    MessageBox.Show("Успешное сохранение данных!");
-
-    //                    new MainWindow().Show();
-    //                    this.Close();
-    //                }
-    //            }
-    //            catch (Exception ex)
-    //            {
-    //                MessageBox.Show($"Загрузка данных прошла неудачно, проверьте подключение к БД. {ex.Message}");
-    //            }
-    //        }
-
-    //    }
-
-    //    private void ExitBtn_Click(object sender, RoutedEventArgs e)
-    //    {
-    //        new MainWindow().Show();
-    //        this.Close();
-    //    }
-    //}
-
 }
+
+

@@ -2,13 +2,13 @@
 <package>
   <metadata>
     <id>EntityWindowsTool</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>EntityWindowsTool</title>
     <authors>Li0xon</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <!-- <icon>icon.png</icon> -->
-    <projectUrl>https://github.com/yourusername/EntityWindowsTool</projectUrl>
+    <projectUrl>https://github.com/Li0xon/EntityWindowsTool</projectUrl>
     <description>A versatile tool designed for integrating and automating interactions with Windows GUI windows and dialog boxes. Enables programmatic window management, automated data input, element detection, and control for streamlined UI automation and testing.</description>
     <releaseNotes>Initial release of EntityWindowsTool with core automation features.</releaseNotes>
     <copyright>© 2025 Li0xon</copyright>
